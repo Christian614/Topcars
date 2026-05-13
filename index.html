@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Cars</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="site-brand">
+            <div class="logo">TC</div>
+            <div class="brand-text">
+                <div class="site-title">Top Cars</div>
+                <div class="site-tag">cars that fit your taste</div>
+            </div>
+        </div>
+
+        <div class="site-actions">
+            <div class="nav">
+                <div class="buy nav-box" onclick="showContent('section1')">BUY</div>
+                <div class="sell nav-box" onclick="showContent('section2')">SELL</div>
+            </div>
+
+            <!-- Greeting and sign-out (kept for JS) -->
+            <div id="greeting" style="display: none;">
+                <span id="greet-text"></span>
+                <button id="signout-btn">Sign out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+    <!-- Auth modal -->
+    <div id="auth-modal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+            <h2 id="modal-title">Welcome</h2>
+
+            <div id="auth-error" role="alert" style="color:#b00020;margin:8px 0;display:none;"></div>
+
+            <div id="auth-forms">
+                <!-- Login form -->
+                <form id="login-form" class="auth-form">
+                    <input type="text" id="login-username" placeholder="Username or email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit" id="login-btn">Log in</button>
+                    <button type="button" id="google-login" style="background:#fff;color:#111;border:1px solid #ddd;">Sign in with Google</button>
+                    <p class="small">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+                </form>
+
+                <!-- Signup form -->
+                <form id="signup-form" class="auth-form" style="display:none;">
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button type="submit" id="signup-btn">Sign up</button>
+                    <p class="small">Already have an account? <a href="#" id="show-login">Log in</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase initializer: paste your Firebase config object into firebaseConfig below -->
+    <script type="module">
+        // Example (replace with your project's config from Firebase console):
+       const firebaseConfig = {
+    apiKey: "AIzaSyBmqO0ddpAZX-ceuFotOUBRc3tHYlXrl3A",
+    authDomain: "topcars-b2fa1.firebaseapp.com",
+    projectId: "topcars-b2fa1",
+    storageBucket: "topcars-b2fa1.firebasestorage.app",
+    messagingSenderId: "533693459294",
+    appId: "1:533693459294:web:26664666250c59eae77dcf",
+    measurementId: "G-G98244861E"
+  };
+  // const firebaseConfig = {
+        //   apiKey: "...",
+        //   authDomain: "...",
+        //   projectId: "...",
+        //   storageBucket: "...",
+        //   messagingSenderId: "...",
+        //   appId: "..."
+        // };
+        try{
+            // only import when browser supports modules
+            import('https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js').then(({ initializeApp }) => {
+                return Promise.all([
+                    Promise.resolve(initializeApp),
+                    import('https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js')
+                ]);
+            }).then(([initializeApp, authModule]) => {
+                // if user hasn't supplied firebaseConfig, don't initialize
+                if(typeof firebaseConfig === 'undefined'){
+                    console.info('Firebase config not found. Paste your firebaseConfig object into this module in index.html to enable auth.');
+                    return;
+                }
+                const app = initializeApp(firebaseConfig);
+                const { getAuth } = authModule;
+                const auth = getAuth(app);
+                // expose auth on window for non-module script to use
+                window._fb = { app, auth, authModule };
+            }).catch(err => {
+                console.error('Firebase load error', err);
+            });
+        }catch(e){ console.warn('Module import not supported in this browser', e); }
+    </script>
+
+    <div id="section1" class="content-section">
+        <div class="bbox">
+            <h2 style="padding: 10px;">Brands</h2>
+        </div>
+
+        <div class="grid">
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/tesla.jpg" alt="Tesla logo"></div>
+                    <div class="card-body"><h3>Tesla</h3><p>Electric performance</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/bmw.png" alt="BMW logo"></div>
+                    <div class="card-body"><h3>BMW</h3><p>Luxury & sport</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/mercedes.jpg" alt="Mercedes logo"></div>
+                    <div class="card-body"><h3>Mercedes</h3><p>Comfort & class</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/audi.jpg" alt="Audi logo"></div>
+                    <div class="card-body"><h3>Audi</h3><p>Precision design</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/Ford.png" alt="Ford logo"></div>
+                    <div class="card-body"><h3>Ford</h3><p>Solid value</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/toyota.png" alt="Toyota logo"></div>
+                    <div class="card-body"><h3>Toyota</h3><p>Reliable choice</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/honda.jpg" alt="Honda logo"></div>
+                    <div class="card-body"><h3>Honda</h3><p>Efficiency</p></div>
+                </div>
+            </div>
+            <div class="one">
+                <div class="card">
+                    <div class="card-img"><img src="images/range.jpg" alt="Range Rover logo"></div>
+                    <div class="card-body"><h3>Range Rover</h3><p>Off-road luxury</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="section2" class="content-section" style="display: none;">
+        <div class="box">
+            <form class="sell-form" id="sell-form">
+                <div class="form-row">
+                    <label for="item-input">Your name</label>
+                    <input type="text" id="item-input" placeholder="Name (surname first)" required>
+                </div>
+                <div class="form-row">
+                    <label for="tele">Phone</label>
+                    <input type="tel" id="tele" placeholder="Phone number" required>
+                </div>
+                <div class="form-row">
+                    <label for="price">Car brand</label>
+                    <input type="text" id="price" placeholder="Car Brand" required>
+                </div>
+                <div class="form-row">
+                    <label for="name">Price range</label>
+                    <input type="text" id="name" placeholder="Price range" required>
+                </div>
+                <div class="form-row">
+                    <label for="file">Photos</label>
+                    <input type="file" id="file" accept="image/*">
+                </div>
+
+                <div class="form-actions">
+                    <button id="add-btn" type="submit">Submit listing</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">&copy; Contact us: Topcars@gmail.com </div>
+        <div class="container">&copy; 2026 Top Cars — Built with care</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

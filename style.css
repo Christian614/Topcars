@@ -1,0 +1,243 @@
+body{
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.site-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: linear-gradient(90deg,#0b0b0b 0%, #141414 100%);
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+}
+.site-brand{ display:flex; align-items:center; gap:12px; }
+.logo{
+    width:52px; height:52px; border-radius:10px; background:#fff; color:#000; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px;
+}
+.brand-text .site-title{ font-size:20px; font-weight:800; }
+.brand-text .site-tag{ font-size:12px; opacity:0.8; }
+
+.site-actions{ display:flex; align-items:center; gap:18px; }
+.nav{ display:flex; gap:12px; align-items:center; }
+
+.buy{
+    width: 100px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    padding-top: 15px;
+    box-sizing: border-box;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sell{
+    width: 100px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    padding-top: 15px;
+    box-sizing: border-box;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-box:hover{
+    background-color: #888888;
+}
+
+.content-section{
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.box{
+    width: 100%;
+    max-width: 900px;
+    min-height: 420px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 18px;
+}
+.bbox{
+    width: 100%;
+    height: 120px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    border-radius: 10px;
+}
+
+.grid{
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    background-color: transparent;
+    gap: 18px;
+    width: 100%;
+    display: grid;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.grid-container > * {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;   
+}
+
+.one{
+    background-color: #fff;
+    height: 260px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.card{ width:100%; height:100%; display:flex; flex-direction:column; overflow:hidden; border-radius:10px; }
+.card-img{ flex:1; overflow:hidden; }
+.card-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.card-body{ padding:12px; background: #fff; text-align:left; }
+.card-body h3{ margin:0 0 6px 0; font-size:16px; }
+.card-body p{ margin:0; font-size:13px; color:#555; }
+
+
+#item-input{
+    height: 60px;
+    width: 400px;
+    display: flex;
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+#price{
+    height: 60px;
+    width: 200px;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+
+#name{
+    height: 60px;
+    width: 200px;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+
+#file{
+    height: 60px;
+    width: 200px;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+
+#tele{
+    height: 20px;
+    width: 200px;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 150px;
+}
+.input{
+    display: flex;
+    /* gap: 40px; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 100%;
+    flex-direction: column;
+}
+
+/* Sell form styles */
+.sell-form{ display:flex; flex-direction:column; gap:12px; width:100%; }
+.sell-form .form-row{ display:flex; flex-direction:column; }
+.sell-form label{ font-weight:600; margin-bottom:6px; }
+.sell-form input[type="text"], .sell-form input[type="tel"], .sell-form input[type="file"], .sell-form input[type="email"]{ padding:10px; border-radius:8px; border:1px solid #ccc; }
+.form-actions{ margin-top:12px; }
+.form-actions button{ background:#111; color:#fff; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+
+.site-footer{ padding:18px 0; color:#ccc; text-align:center; }
+
+.btn{
+    width: 70%;
+    display: flex;
+    margin-top: 450px;
+}
+
+#add-btn{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    float: left;
+    background-color: black;
+    color: #fff;
+    font-size: 20px;
+}
+
+/* Container wrapper */
+.container{ max-width:1100px; margin:18px auto; padding:0 18px; }
+
+/* Responsive tweaks */
+@media (max-width:720px){
+    .site-header{ flex-direction:column; gap:12px; align-items:flex-start }
+    .nav{ gap:8px }
+    #item-input, #price, #name, #file, #tele{ margin-left: 18px; width: calc(100% - 36px); }
+}
+
+/* Auth modal styles */
+.modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal[aria-hidden="true"]{ display: none; }
+.modal-content{
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    width: 320px;
+    max-width: calc(100% - 40px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.modal-close{ position:absolute; right:10px; top:8px; background:transparent; border:none; font-size:18px; cursor:pointer; }
+.modal-content{ position:relative; transition: transform 180ms ease, opacity 180ms ease; }
+.modal[aria-hidden="false"] .modal-content{ transform: translateY(0); opacity:1; }
+.modal[aria-hidden="true"] .modal-content{ transform: translateY(-8px); opacity:0; }
+.auth-form{ display: flex; flex-direction: column; gap: 10px; }
+.auth-form input{
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.auth-form button{
+    padding: 10px 12px;
+    border: none;
+    background: #111;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.small{ font-size: 12px; color: #333; }
+.small a{ color: #111; text-decoration: none; font-weight: bold; }
+
+/* Greeting and signout button styles */
+#greeting{ display:flex; justify-content:center; align-items:center; gap:12px; }
+#signout-btn{ padding:6px 10px; border-radius:6px; border:none; cursor:pointer; }
